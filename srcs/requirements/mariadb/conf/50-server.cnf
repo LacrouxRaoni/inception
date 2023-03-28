@@ -1,0 +1,41 @@
+# MariaDB server configuration file
+
+# This group is read by both the server and clients
+[client-server]
+
+# This group is read by the MariaDB server
+[mysqld]
+
+# Basic Settings
+user = mysql
+pid-file = /var/run/mysqld/mysqld.pid
+socket = /var/run/mysqld/mysqld.sock
+basedir = /usr
+datadir = /var/lib/mysql
+tmpdir = /tmp
+
+# Networking
+bind-address = 0.0.0.0
+
+# Fine Tuning
+query_cache_size = 16M
+max_connections = 100
+
+# Logging and Replication
+log_error = /var/log/mysql/error.log
+expire_logs_days = 10
+
+# Character Sets
+character-set-server = utf8mb4
+collation-server = utf8mb4_general_ci
+
+# InnoDB
+default_storage_engine = InnoDB
+innodb_buffer_pool_size = 1G
+
+# Security
+skip_name_resolve = 1
+
+# Other settings
+wait_timeout = 28800
+max_allowed_packet = 16M
