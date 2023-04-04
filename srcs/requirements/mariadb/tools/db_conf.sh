@@ -25,4 +25,3 @@ _EOF_
 fi
 
 /usr/bin/mysqld_safe --user=mysql --datadir=/var/lib/mysql
-echo ${MARIADB_ROOT_PASSWORD}
