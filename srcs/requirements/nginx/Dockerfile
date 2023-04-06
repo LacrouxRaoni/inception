@@ -6,11 +6,9 @@ RUN apt-get install nginx -y
 
 RUN apt-get install openssl -y
 
-COPY conf/nginx.conf /etc/nginx/conf.d/
+COPY conf/rruiz-la.conf /etc/nginx/sites-available
 
-RUN mkdir /var/www/wordpress
-
-COPY index.php /var/www/wordpress/
+RUN ln -s /etc/nginx/sites-available/rruiz-la.conf /etc/nginx/sites-enabled/rruiz-la.conf
 
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj "/C=BR/ST=SP/L=São Paulo/O=42FR/OU=42SP/CN=rruiz-la.42.sp" -keyout /etc/ssl/rruiz-la.key -out /etc/ssl/rruiz-la.crt
 

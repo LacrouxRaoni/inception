@@ -22,17 +22,20 @@ services:
     container_name: wordpress
     image: wordpress
     volumes:
-      - "mariadb-volume:/var/lib/mysql"
+      - "wordpress-volume:/var/www/wordpress"
     ports:
       - "9000:9000"
     networks:
       - inception
     depends_on:
       - mariadb
+
   nginx:
     build: requirements/nginx/
     container_name: nginx
     image: nginx
+    volumes:
+      - "wordpress-volume:/var/www/wordpress"
     ports:
       - "443:443"
     networks:
@@ -41,7 +44,6 @@ services:
       - wordpress
     restart: always
 
-    
 volumes:
   mariadb-volume:
     driver: local
@@ -49,6 +51,13 @@ volumes:
       type: 'none'
       o: 'bind'
       device: ${MARIADB_VOLUME}
+  wordpress-volume:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: ${WORDPRESS_VOLUME}
+
 
 networks:
   inception:
