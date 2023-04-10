@@ -6,10 +6,6 @@ RUN apt-get install php7.3 php7.3-fpm php7.3-mysql php-common php7.3-cli php7.3-
 
 RUN mkdir -p /run/php
 
-#RUN rm /etc/php/7.3/fpm/php.ini
-
-#COPY tools/php.ini /etc/php/7.3/fpm/
-
 COPY tools/wp_conf.sh /tmp/
 
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar

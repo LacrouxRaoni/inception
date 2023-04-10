@@ -25,6 +25,13 @@ services:
       MARIADB_DATABASE:       ${MARIADB_DATABASE}
       MARIADB_USER:           ${MARIADB_USER}
       MARIADB_PASSWORD:       ${MARIADB_PASSWORD}
+      DOMAIN_NAME:            ${DOMAIN_NAME}
+      WP_ADM_USR:             ${WP_ADM_USR}
+      WP_ADM_PSW:             ${WP_ADM_PSW}
+      WP_ADM_MAIL:            ${WP_ADM_MAIL}
+      WP_USR:                 ${WP_USR}
+      WP_USR_MAIL:            ${WP_USR_MAIL}
+      WP_PSW:                 ${WP_PSW}
     volumes:
       - "wordpress-volume:/var/www/wordpress"
     networks:
