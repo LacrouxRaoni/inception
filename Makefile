@@ -1,9 +1,9 @@
 DOCKER_COMPOSE	=	./srcs/docker-compose.yml
 
-DATA_PATH		=	/home/rruiz-la/data
+DATA_PATH		=	/home/rruiz-la
 
-DB_VOLUME		=	$(DATA_PATH)/db/
-WP_VOLUME		=	$(DATA_PATH)/wp/
+DB_VOLUME		=	$(DATA_PATH)/data/db/
+WP_VOLUME		=	$(DATA_PATH)/data/wp/
 
 all:
 	@ sudo mkdir -p $(DB_VOLUME)
@@ -11,13 +11,17 @@ all:
 	@ sudo sed -i "s/127.0.0.1	localhost/127.0.0.1 rruiz-la.42.fr/" /etc/hosts
 	@ docker-compose -f $(DOCKER_COMPOSE) up --build -d
 
-clean: stop
-	@ docker system prune -a --force
+clean:
+	@ docker-compose down -- volumes
 
 fclean: clean
-	@ sudo rm -rf /home/rruiz-la
+	@ sudo rm -rf $(DATA_PATH)
 
 re: fclean all
 
 stop:
-	@ docker-compose -f $(DOCKER_COMPOSE) down
+	@ docker stop nginx mariadb wordpress
+
+clean_up:
+	@ bash ./srcs/requirements/tools/clean.sh
+
