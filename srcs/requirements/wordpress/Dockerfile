@@ -18,6 +18,13 @@ RUN sed -i 's/^listen = .*/listen = 0.0.0.0:9000/' /etc/php/7.3/fpm/pool.d/www.c
 
 WORKDIR /var/www/wordpress/
 
+## BONUS
+RUN apt install php7.3-redis -y
+
+RUN echo "env[REDIS_HOST] = redis" >>/etc/php/7.3/fpm/pool.d/www.conf
+RUN echo "env[REDIS_PORT] = 6379" >>/etc/php/7.3/fpm/pool.d/www.conf
+
+
 EXPOSE 9000
 
 ENTRYPOINT ["/bin/sh", "/tmp/wp_conf.sh"]
