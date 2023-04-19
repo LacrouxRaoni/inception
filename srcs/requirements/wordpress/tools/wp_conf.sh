@@ -9,6 +9,13 @@ if [ ! -d "/var/www/wordpress/wp-config.php" ]; then
     
     wp user create "${WP_USR}" "${WP_USR_MAIL}" --user_pass="${WP_PSW}" --porcelain --allow-root
 
+	#BONUS
+	wp plugin install redis-cache --activate --allow-root
+    wp config set WP_REDIS_HOST redis --allow-root
+    wp config set WP_REDIS_PORT 6379 --allow-root
+    wp plugin update --all --allow-root 
+    wp redis enable --allow-root
+
 fi
 
 php-fpm7.3 -F
