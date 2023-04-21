@@ -1,49 +1,19 @@
 #!/bin/bash
 
 # Stop all running containers
-if docker ps | grep "nginx"; then
-    docker stop nginx
-fi
-if docker ps | grep "mariadb"; then
-    docker stop mariadb
-fi
-if docker ps | grep "wordpress"; then
-    docker stop wordpress
-fi
+docker stop $(docker ps -qa)
 
 # Remove all stopped containers
-if docker ps -a | grep "nginx"; then
-    docker rm -f nginx
-fi
-if docker ps -a | grep "mariadb"; then
-    docker rm -f mariadb
-fi
-if docker ps -a | grep "wordpress"; then
-    docker rm -f wordpress
-fi
+docker rm $(docker ps -qa)
 
 # Remove all images
-if docker images | grep "nginx"; then
-    docker rmi -f nginx
-fi
-if docker images | grep "mariadb"; then
-    docker rmi -f mariadb
-fi
-if docker images | grep "wordpress"; then
-    docker rmi -f wordpress
-fi
+docker rmi -f $(docker images -qa)
 
 # # Remove all volumes
-if docker volume ls | grep "srcs_mariadb-volume"; then
-    docker volume rm srcs_mariadb-volume
-fi
-if docker volume ls | grep "srcs_wordpress-volume"; then
-    docker volume rm srcs_wordpress-volume
-fi
+docker volume rm $(docker volume ls -q)
 
 # Remove all networks /
-if docker volume ls | grep "inception"; then
-    docker network rm inception
-fi
+docker network rm $(docker network ls -q)2>/dev/null
+
 # Remove volumes into host
-sudo rm -rf /home/fagiusep
+sudo rm -rf /home/rruiz-la

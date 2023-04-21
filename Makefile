@@ -12,15 +12,19 @@ all:
 	@ docker-compose -f $(DOCKER_COMPOSE) up --build -d
 
 clean:
-	@ docker-compose down -- volumes
+	@ docker-compose -f $(DOCKER_COMPOSE) down --volumes
 
 fclean: clean
+	@ docker system prune -a --force
+	@ sudo rm -rf $(DATA_PATH)
+
+clean_local_vol:
 	@ sudo rm -rf $(DATA_PATH)
 
 re: fclean all
 
 stop:
-	@ docker stop nginx mariadb wordpress
+	@ docker stop nginx mariadb wordpress redis
 
 clean_up:
 	@ bash ./srcs/requirements/tools/clean.sh
