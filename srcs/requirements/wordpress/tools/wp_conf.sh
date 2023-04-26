@@ -18,5 +18,5 @@ if [ ! -d "/var/www/wordpress/wp-config.php" ]; then
 
 fi
 
-php-fpm7.3 -F
+php-fpm7.3 --nodaemonize
 
