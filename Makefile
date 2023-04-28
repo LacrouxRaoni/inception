@@ -18,10 +18,13 @@ fclean: clean
 	@ docker system prune -a --force
 	@ sudo rm -rf $(DATA_PATH)
 
+re: fclean all
+
 clean_local_vol:
 	@ sudo rm -rf $(DATA_PATH)
 
-re: fclean all
+up:
+	@ docker-compose -f $(DOCKER_COMPOSE) up -d
 
 stop:
 	@ docker stop nginx mariadb wordpress redis
