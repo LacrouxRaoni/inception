@@ -54,7 +54,7 @@ services:
     restart: always
   
   redis:
-    build: bonus/redis/
+    build: requirements/bonus/redis/
     container_name: redis
     image: redis:1.0
     networks:
