@@ -56,7 +56,7 @@ services:
   redis:
     build: requirements/bonus/redis/
     container_name: redis
-    image: redis:1.0
+    image: redis:2.3
     networks:
       - inception
     depends_on:
