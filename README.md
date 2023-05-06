@@ -95,14 +95,33 @@ All the containers are managed by a Docker Compose file, and there is a Makefile
 
 In addition, a .env file must be created in the same path as the docker-compose.yml file. This .env file should contain the following variables, which are necessary for the proper functioning of the containers:
 
--	DB_ROOT_PASSWORD: the root password for the MariaDB database
--	DB_NAME: the name of the database used by WordPress
--	DB_USER: the username used to access the database
--	DB_PASSWORD: the password used to access the database
--	WORDPRESS_DB_HOST: the host name for the MariaDB database
--	WORDPRESS_DB_NAME: the name of the database used by WordPress
--	WORDPRESS_DB_USER: the username used to access the database
--	WORDPRESS_DB_PASSWORD: the password used to access the database
+-	MARIADB_ROOT_HOST: This variable specifies the IP address or hostname of the machine that will connect to the MariaDB database.
+
+-	MARIADB_ROOT_PASSWORD: This variable sets the root password for the MariaDB database. This password is required to perform administrative tasks on the database.
+
+-	MARIADB_DATABASE: This variable sets the name of the database that will be used for the WordPress installation.
+
+-	MARIADB_USER: This variable sets the username for the database user that will be used to access the WordPress database.
+
+-	MARIADB_PASSWORD: This variable sets the password for the database user that will be used to access the WordPress database.
+
+-	DOMAIN_NAME: This variable sets the domain name that will be used to access the website.
+
+-	WP_ADM_USR: This variable sets the username for the WordPress admin account that will be created during the installation.
+
+-	WP_ADM_PSW: This variable sets the password for the WordPress admin account that will be created during the installation.
+
+-	WP_ADM_MAIL: This variable sets the email address for the WordPress admin account that will be created during the installation.
+
+-	WP_USR: This variable sets the username for the regular WordPress user account that will be created during the installation.
+
+-	WP_USR_MAIL: This variable sets the email address for the regular WordPress user account that will be created during the installation.
+
+-	WP_PSW: This variable sets the password for the regular WordPress user account that will be created during the installation.
+
+-	MARIADB_VOLUME: This variable sets the name of the Docker volume that will be used to persist the MariaDB database data.
+
+-	WORDPRESS_VOLUME: This variable sets the name of the Docker volume that will be used to persist the WordPress installation data.
 
 These variables will be used by the containers to set up the necessary configurations and ensure that the services are properly connected.
 
